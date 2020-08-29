@@ -68,12 +68,12 @@ async function getTasks() {
 
 async function addTask(data, id) {
   try {
-    const task = await db("tasks").insert(data).where("projectId", id);
+    const task = await db("tasks").insert({ ...data, projectId: id });
 
     return task;
   } catch (err) {
     console.log(err.stack);
-    return null;
+    return { msg: "Invalid Project Id" };
   }
 }
 

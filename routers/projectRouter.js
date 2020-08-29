@@ -18,7 +18,7 @@ router.post("/resources", async (req, res, next) => {
   const data = req.body;
   try {
     if (!data.name || data.name.length < 1) {
-      return res.status(400).json({ msg: "Name is a required field" });
+      return res.status(400).json({ msg: "Resource name is a required field" });
     }
 
     const newResource = await Projects.addResource(data);
@@ -45,7 +45,7 @@ router.post("/projects", async (req, res, next) => {
   const data = req.body;
   try {
     if (!data.name || data.name.length < 1) {
-      return res.status(400).json({ msg: "Name is a required field." });
+      return res.status(400).json({ msg: "Project name is a required field." });
     }
 
     const newProject = await Projects.addProject(data);
@@ -73,7 +73,9 @@ router.post("/projects/:id/tasks", async (req, res, next) => {
   const data = req.body;
   try {
     if (!data.description || data.description.length < 1) {
-      return res.status(400).json({ msg: "Description is a required field" });
+      return res
+        .status(400)
+        .json({ msg: "Task description is a required field" });
     }
 
     if (!id || id === "") {
